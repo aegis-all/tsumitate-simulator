@@ -14,7 +14,7 @@ import { manYenAxis, percent } from '../../domain/format';
 import type { SimulationResult } from '../../domain/simulate';
 import { PATTERN_COLORS, PRINCIPAL_COLOR } from '../patternColors';
 import { ChartTooltip } from './ChartTooltip';
-import { xTickInterval } from './chartData';
+import { X_TICK_MIN_GAP, legendSorter } from './chartData';
 
 /** 積み上げ棒: 元本 + 運用収益、パターン切替 (design.md §6.4) */
 export function StackedChart({ result }: { result: SimulationResult }) {
@@ -55,7 +55,8 @@ export function StackedChart({ result }: { result: SimulationResult }) {
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
             <XAxis
               dataKey="year"
-              interval={xTickInterval(result.inputs.years)}
+              interval="preserveStartEnd"
+              minTickGap={X_TICK_MIN_GAP}
               tickFormatter={(v: number) => `${v}年`}
               tick={{ fill: 'var(--muted)', fontSize: 12 }}
               stroke="var(--border)"
@@ -67,7 +68,7 @@ export function StackedChart({ result }: { result: SimulationResult }) {
               stroke="var(--border)"
             />
             <Tooltip content={<ChartTooltip ageOf={ageOf} />} cursor={{ fill: 'var(--surface)' }} />
-            <Legend wrapperStyle={{ fontSize: 13 }} />
+            <Legend wrapperStyle={{ fontSize: 13 }} itemSorter={legendSorter} />
             <Bar
               dataKey="principal"
               name="元本"

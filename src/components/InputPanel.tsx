@@ -82,7 +82,7 @@ export function InputPanel({ inputs, onUpdate, onSetRate, onReset }: Props) {
           初期値に戻す
         </button>
         <button type="button" className="btn" onClick={copyUrl}>
-          {copyState === 'done' ? 'コピーしました' : 'このシミュレーションのURLをコピー'}
+          {copyState === 'done' ? 'コピーしました' : 'この条件のURLをコピー'}
         </button>
       </div>
       {copyState === 'fallback' && (

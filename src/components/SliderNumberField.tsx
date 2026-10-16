@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type KeyboardEvent } from 'react';
+import { useEffect, useId, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import { clamp, rangeMessage, type NumericConstraint } from '../domain/constraints';
 
 export interface SliderNumberFieldProps {
@@ -73,7 +73,11 @@ export function SliderNumberField({
     if (n !== value) onCommit(n);
   };
 
-  const style = accent ? ({ '--accent': accent } as React.CSSProperties) : undefined;
+  const pct = ((value - constraint.min) / (constraint.max - constraint.min)) * 100;
+  const style = {
+    ...(accent ? { '--accent': accent } : {}),
+    '--pct': `${Math.min(100, Math.max(0, pct))}%`,
+  } as CSSProperties;
 
   return (
     <div className="snf" style={style}>

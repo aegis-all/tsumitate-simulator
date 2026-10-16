@@ -44,19 +44,12 @@ export function YearlyTable({ result }: { result: SimulationResult }) {
   return (
     <section className="yearly card">
       <details>
-        <summary>
-          <span>年ごとの推移を見る</span>
-          <button
-            type="button"
-            className="btn"
-            onClick={(e) => {
-              e.preventDefault();
-              downloadCsv(result);
-            }}
-          >
+        <summary>年ごとの推移を見る</summary>
+        <div className="table-actions">
+          <button type="button" className="btn" onClick={() => downloadCsv(result)}>
             CSVダウンロード
           </button>
-        </summary>
+        </div>
         <div className="table-wrap">
           <table>
             <caption className="visually-hidden">

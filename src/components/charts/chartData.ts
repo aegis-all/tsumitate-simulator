@@ -23,9 +23,12 @@ export function toChartRows(result: SimulationResult): ChartRow[] {
   }));
 }
 
-/** 期間が長いときの X 軸ラベル間引き (design.md §6.4) */
-export function xTickInterval(years: number): number {
-  if (years > 30) return 4; // 5年刻み
-  if (years > 15) return 1; // 2年刻み
-  return 0;
+/** X 軸の目盛は幅に応じて自動で間引く (design.md §6.4)。最低ギャップ px */
+export const X_TICK_MIN_GAP = 28;
+
+/** 凡例の並び順 (元本 → A → B → C)。Recharts v3 は既定で値順に並べ替えるため明示する */
+const LEGEND_ORDER = ['principal', 'a', 'b', 'c', 'gain'];
+export function legendSorter(item: { dataKey?: unknown }): number {
+  const i = LEGEND_ORDER.indexOf(String(item.dataKey));
+  return i === -1 ? 99 : i;
 }

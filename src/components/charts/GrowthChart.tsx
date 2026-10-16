@@ -13,7 +13,7 @@ import { manYenAxis, percent } from '../../domain/format';
 import type { SimulationResult } from '../../domain/simulate';
 import { PATTERN_COLORS, PRINCIPAL_COLOR } from '../patternColors';
 import { ChartTooltip } from './ChartTooltip';
-import { toChartRows, xTickInterval } from './chartData';
+import { X_TICK_MIN_GAP, legendSorter, toChartRows } from './chartData';
 
 /** 折れ線: 元本(破線) + A/B/C (design.md §6.4) */
 export function GrowthChart({ result }: { result: SimulationResult }) {
@@ -32,7 +32,8 @@ export function GrowthChart({ result }: { result: SimulationResult }) {
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
           <XAxis
             dataKey="year"
-            interval={xTickInterval(result.inputs.years)}
+            interval="preserveStartEnd"
+            minTickGap={X_TICK_MIN_GAP}
             tickFormatter={(v: number) => `${v}年`}
             tick={{ fill: 'var(--muted)', fontSize: 12 }}
             stroke="var(--border)"
@@ -44,7 +45,7 @@ export function GrowthChart({ result }: { result: SimulationResult }) {
             stroke="var(--border)"
           />
           <Tooltip content={<ChartTooltip ageOf={ageOf} />} />
-          <Legend wrapperStyle={{ fontSize: 13 }} />
+          <Legend wrapperStyle={{ fontSize: 13 }} itemSorter={legendSorter} />
           <Line
             type="monotone"
             dataKey="principal"

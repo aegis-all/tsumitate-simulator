@@ -79,6 +79,10 @@ input {
   gap: 20px;
   min-width: 0;
 }
+/* グリッド子要素の min-width:auto で横スクロールが出ないようにする (テーブルは .table-wrap 内でスクロール) */
+.results > * {
+  min-width: 0;
+}
 
 @media (min-width: 960px) {
   .app {
@@ -195,12 +199,61 @@ input {
   gap: 10px;
   align-items: center;
 }
+/* range は accent-color だと未到達側トラックの色がブラウザ任せで系列ごとにばらつくため自前で描く */
 .snf-range {
+  --track: var(--border);
+  --fill: var(--accent, var(--c-rate-a));
   width: 100%;
   min-width: 0;
-  accent-color: var(--accent, var(--c-rate-a));
   margin: 0;
   height: 32px;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.snf-range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--fill) 0%,
+    var(--fill) var(--pct, 0%),
+    var(--track) var(--pct, 0%),
+    var(--track) 100%
+  );
+}
+.snf-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--fill);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--fill);
+}
+.snf-range::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--track);
+}
+.snf-range::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--fill);
+}
+.snf-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--fill);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--fill);
+}
+.snf-range:focus-visible {
+  outline-offset: 0;
 }
 .snf-number-wrap {
   display: inline-flex;
@@ -395,15 +448,15 @@ input {
 .yearly summary {
   cursor: pointer;
   font-weight: 600;
+}
+.yearly .table-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 12px;
 }
 .yearly .table-wrap {
   overflow-x: auto;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 .yearly table {
   width: 100%;
