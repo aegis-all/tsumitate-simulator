@@ -1,4 +1,4 @@
-# つみたてシミュレーター
+# 審査形成アカデミー つみたてシミュレーター
 
 公開URL: https://aegis-all.github.io/tsumitate-simulator/
 
