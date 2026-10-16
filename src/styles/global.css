@@ -60,24 +60,20 @@ input {
 }
 
 .app-header {
-  padding: 8px 0 16px;
+  padding: 0 0 16px;
 }
-.app-header h1 {
-  font-size: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 12px;
+/* ファーストビュー: PC は横長、スマホは縦長の画像 (<picture> で切替) */
+.fv {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
 }
-.app-header .brand {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--c-rate-a);
-  letter-spacing: 0.02em;
-}
-.app-header p {
-  margin: 4px 0 0;
-  color: var(--muted);
+.fv img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
 }
 
 .app-main {
