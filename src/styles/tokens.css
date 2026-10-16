@@ -1,4 +1,5 @@
-/* design.md §6.5 — 色・余白・フォントの変数 */
+/* design.md §6.5 — 色・余白・フォントの変数
+   レイアウト: 左に入力パネル(sticky)、右に 3パターンのサマリー → グラフ → 年次表。スマホは縦1列。 */
 :root {
   --bg: #ffffff;
   --fg: #1b1f24;
@@ -23,12 +24,11 @@
   --font-sans:
     'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic UI', Meiryo,
     system-ui, -apple-system, 'Segoe UI', sans-serif;
-
-  color-scheme: light dark;
 }
 
+/* ダーク: OS 設定(明示的に light を選んでいない場合) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --bg: #111418;
     --fg: #e8eaed;
     --muted: #9aa3ad;
@@ -39,5 +39,21 @@
     --c-warn-bg: #2b2014;
     --c-warn-border: #5a4020;
     --shadow: none;
+    color-scheme: dark;
   }
+}
+
+/* ダーク: 明示的な選択 */
+:root[data-theme='dark'] {
+  --bg: #111418;
+  --fg: #e8eaed;
+  --muted: #9aa3ad;
+  --border: #2a2f36;
+  --surface: #181c22;
+  --surface-2: #1f242b;
+  --c-warn: #f4b36b;
+  --c-warn-bg: #2b2014;
+  --c-warn-border: #5a4020;
+  --shadow: none;
+  color-scheme: dark;
 }

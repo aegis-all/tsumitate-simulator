@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { IS_ARTIFACT } from '../env';
 import {
   CONSTRAINTS,
   RATE_KEYS,
@@ -81,9 +82,11 @@ export function InputPanel({ inputs, onUpdate, onSetRate, onReset }: Props) {
         <button type="button" className="btn" onClick={onReset}>
           初期値に戻す
         </button>
-        <button type="button" className="btn" onClick={copyUrl}>
-          {copyState === 'done' ? 'コピーしました' : 'この条件のURLをコピー'}
-        </button>
+        {!IS_ARTIFACT && (
+          <button type="button" className="btn" onClick={copyUrl}>
+            {copyState === 'done' ? 'コピーしました' : 'この条件のURLをコピー'}
+          </button>
+        )}
       </div>
       {copyState === 'fallback' && (
         <div>

@@ -1,4 +1,5 @@
-import type { CSSProperties } from 'react';
+import { useState, type CSSProperties } from 'react';
+import { IS_ARTIFACT } from '../env';
 import { RATE_LABELS } from '../domain/constraints';
 import { manYenShort, percent } from '../domain/format';
 import type { SimulationResult } from '../domain/simulate';
@@ -41,15 +42,47 @@ function downloadCsv(result: SimulationResult) {
 
 export function YearlyTable({ result }: { result: SimulationResult }) {
   const { inputs, patterns, principalSeries } = result;
+  const [copyState, setCopyState] = useState<'idle' | 'done' | 'fallback'>('idle');
+
+  const copyCsv = async () => {
+    const csv = buildCsv(result);
+    try {
+      await navigator.clipboard.writeText(csv);
+      setCopyState('done');
+      window.setTimeout(() => setCopyState('idle'), 2000);
+    } catch {
+      setCopyState('fallback');
+    }
+  };
+
   return (
     <section className="yearly card">
       <details>
         <summary>年ごとの推移を見る</summary>
         <div className="table-actions">
-          <button type="button" className="btn" onClick={() => downloadCsv(result)}>
-            CSVダウンロード
+          {!IS_ARTIFACT && (
+            <button type="button" className="btn" onClick={() => downloadCsv(result)}>
+              CSVダウンロード
+            </button>
+          )}
+          <button type="button" className="btn" onClick={copyCsv}>
+            {copyState === 'done' ? 'コピーしました' : 'CSVをコピー'}
           </button>
         </div>
+        {copyState === 'fallback' && (
+          <div>
+            <p className="muted" style={{ margin: '8px 0 0', fontSize: '0.85rem' }}>
+              コピーできませんでした。以下を選択してコピーしてください。
+            </p>
+            <textarea
+              className="csv-text"
+              readOnly
+              value={buildCsv(result)}
+              aria-label="CSVデータ"
+              onFocus={(e) => e.currentTarget.select()}
+            />
+          </div>
+        )}
         <div className="table-wrap">
           <table>
             <caption className="visually-hidden">
@@ -87,7 +120,7 @@ export function YearlyTable({ result }: { result: SimulationResult }) {
           </table>
         </div>
         <p className="muted" style={{ fontSize: '0.85rem', margin: '8px 0 0' }}>
-          単位: 万円(小数1桁、1,000円未満を四捨五入)。CSVは円単位で出力します。
+          単位: 万円(小数1桁、1,000円未満を四捨五入)。CSVは円単位です。
         </p>
       </details>
     </section>

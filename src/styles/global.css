@@ -54,7 +54,9 @@ input {
 .app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 16px;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 
 .app-header {
@@ -86,7 +88,9 @@ input {
 
 @media (min-width: 960px) {
   .app {
-    padding: 24px;
+    padding-block: 24px;
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
   }
   .app-main {
     grid-template-columns: 360px minmax(0, 1fr);
@@ -157,6 +161,18 @@ input {
   filter: brightness(1.05);
 }
 
+.csv-text {
+  width: 100%;
+  min-height: 160px;
+  margin-top: 8px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--fg);
+  padding: 8px;
+}
 .copy-fallback {
   font-size: 0.85rem;
   word-break: break-all;
@@ -452,6 +468,8 @@ input {
 .yearly .table-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
   margin-top: 12px;
 }
 .yearly .table-wrap {

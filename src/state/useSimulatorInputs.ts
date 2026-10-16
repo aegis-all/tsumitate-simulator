@@ -6,11 +6,12 @@ import {
   type SimulatorInputs,
 } from '../domain/constraints';
 import { buildParams, parseParams } from './urlParams';
+import { IS_ARTIFACT } from '../env';
 
 const URL_SYNC_DEBOUNCE_MS = 300;
 
 function readInitial(): SimulatorInputs {
-  if (typeof window === 'undefined') return DEFAULT_INPUTS;
+  if (typeof window === 'undefined' || IS_ARTIFACT) return DEFAULT_INPUTS;
   try {
     return sanitizeInputs(parseParams(window.location.search));
   } catch {
@@ -28,6 +29,7 @@ export function useSimulatorInputs() {
   const isFirst = useRef(true);
 
   useEffect(() => {
+    if (IS_ARTIFACT) return; // 公開ページではクエリ文字列が使えない
     if (isFirst.current) {
       // 初回は URL をそのまま (不正値を既定値に正規化した結果で上書きしない)
       isFirst.current = false;
@@ -55,6 +57,7 @@ export function useSimulatorInputs() {
 
   const reset = useCallback(() => {
     setInputs(DEFAULT_INPUTS);
+    if (IS_ARTIFACT) return;
     try {
       window.history.replaceState(null, '', window.location.pathname);
     } catch {
