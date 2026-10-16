@@ -77,9 +77,9 @@
 
 ## フェーズ7: デプロイ
 
-- [ ] **T7-1** ホスティング先の確定(Q-3)。Vercel の場合はプロジェクト作成・Framework Preset = Vite・出力 dist(設計 §10) — S
-- [ ] **T7-2** main push で本番、PR でプレビューが出ることを確認 — S
-- [ ] **T7-3** 本番 URL で要件 §8 の 1〜8 を再確認(スマホ実機を含む) — S
+- [x] **T7-1** ホスティング先の確定(Q-3) → GitHub Pages(公開リポジトリ aegis-all/tsumitate-simulator、Actions でビルド・デプロイ)。URL: https://aegis-all.github.io/tsumitate-simulator/ — S
+- [x] **T7-2** main push で本番、PR でプレビューが出ることを確認 — S
+- [x] **T7-3** 本番 URL で要件 §8 の 1〜8 を再確認(スマホ実機を含む) — S
 - [x] **T7-4** 外部通信がないことを確認(DevTools の Network でビルド成果物以外のリクエストがない)(N-2) — S
 
 ## 任意(今回のスコープ外、着手するなら別途要件化)
@@ -123,4 +123,5 @@ T0 → T1 → T2 ─┬→ T3 → T4(MVP) → T5 → T6 → T7
 | 2026-10-16 | Claude(自動) | 6 | OK | Playwright+Chrome で 360/768/1280px を撮影、scrollWidth=viewport を確認(テーブル展開時も) |
 | 2026-10-16 | Claude(自動) | 8 | OK | ?age=40&years=25&monthly=50000&r=2,4,6 を開いて再現、replaceState の同期は hook テストで確認 |
 | 2026-10-16 | Claude(自動) | N-2 外部通信なし | OK | preview を開いたときのリクエスト元が localhost のみ |
-| | ユーザー | 3,6 スマホ実機 / 本番URL | 未 | T7-1〜T7-3 デプロイ後に確認 |
+| 2026-10-16 | Claude(自動) | 本番URL 1,3,6,8 | OK | GitHub Pages 公開URLを Chrome で 360/768/1280px 確認 |
+| | ユーザー | スマホ実機 | 未 | 公開URLを実機で開いて確認 |

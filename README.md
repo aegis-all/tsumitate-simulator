@@ -1,5 +1,7 @@
 # つみたてシミュレーター
 
+公開URL: https://aegis-all.github.io/tsumitate-simulator/
+
 毎月の積立額・積立期間・年齢と、3パターンの想定利回りを入力すると、将来の運用資産額を比較できる静的Webアプリです。
 金融庁「[つみたてシミュレーター](https://www.fsa.go.jp/policy/nisa2/tsumitate-simulator/)」を参考に、年齢入力と3パターン同時比較を追加しています。
 
@@ -47,7 +49,8 @@ FV = P × ((1 + i)^n − 1) / i     (i = 0 のときは P × n)
 
 ## デプロイ
 
-静的ファイルのみなので、`dist/` をそのまま配信できます。
+main に push すると GitHub Actions(.github/workflows/deploy-pages.yml)が lint → test → build → GitHub Pages 公開まで行います。
+静的ファイルのみなので、`dist/` を他のホストにそのまま置いても動きます(base は相対パス)。
 
 - Vercel: Framework Preset = Vite、Build Command `npm run build`、Output Directory `dist`。環境変数なし。
 - GitHub Pages など サブパス配信の場合は `vite.config.ts` の `base` を変更してください。
