@@ -1,6 +1,6 @@
 # 資産形成アカデミー つみたてシミュレーター
 
-公開URL: https://aegis-all.github.io/tsumitate-simulator/
+公開URL: https://simulator.financial-design-inc.com/ (GitHub Pages + カスタムドメイン。aegis-all.github.io/tsumitate-simulator/ は自動転送)
 
 毎月の積立額・積立期間・年齢と、3パターンの想定利回りを入力すると、将来の運用資産額を比較できる静的Webアプリです。
 金融庁「[つみたてシミュレーター](https://www.fsa.go.jp/policy/nisa2/tsumitate-simulator/)」を参考に、年齢入力と3パターン同時比較を追加しています。

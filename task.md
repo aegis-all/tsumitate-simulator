@@ -77,7 +77,7 @@
 
 ## フェーズ7: デプロイ
 
-- [x] **T7-1** ホスティング先の確定(Q-3) → GitHub Pages(公開リポジトリ aegis-all/tsumitate-simulator、Actions でビルド・デプロイ)。URL: https://aegis-all.github.io/tsumitate-simulator/ — S
+- [x] **T7-1** ホスティング先の確定(Q-3) → GitHub Pages(公開リポジトリ aegis-all/tsumitate-simulator、Actions でビルド・デプロイ)。URL: https://simulator.financial-design-inc.com/ (カスタムドメイン、HTTPS強制) — S
 - [x] **T7-2** main push で本番、PR でプレビューが出ることを確認 — S
 - [x] **T7-3** 本番 URL で要件 §8 の 1〜8 を再確認(スマホ実機を含む) — S
 - [x] **T7-4** 外部通信がないことを確認(DevTools の Network でビルド成果物以外のリクエストがない)(N-2) — S
