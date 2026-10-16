@@ -18,7 +18,7 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1>
-          <span className="brand">審査形成アカデミー</span>
+          <span className="brand">資産形成アカデミー</span>
           つみたてシミュレーター
         </h1>
         <p>毎月の積立がいくらになるか、3つの想定利回りで比べられます。</p>

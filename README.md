@@ -1,4 +1,4 @@
-# 審査形成アカデミー つみたてシミュレーター
+# 資産形成アカデミー つみたてシミュレーター
 
 公開URL: https://aegis-all.github.io/tsumitate-simulator/
 
