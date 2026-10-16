@@ -1,0 +1,43 @@
+/* design.md §6.5 — 色・余白・フォントの変数 */
+:root {
+  --bg: #ffffff;
+  --fg: #1b1f24;
+  --muted: #5b6470;
+  --border: #e3e6ea;
+  --surface: #f6f7f9;
+  --surface-2: #ffffff;
+
+  --c-principal: #8a8f98;
+  --c-rate-a: #2f6fed;
+  --c-rate-b: #1f9d6a;
+  --c-rate-c: #d9731a;
+  --c-warn: #b45309;
+  --c-warn-bg: #fff7ed;
+  --c-warn-border: #fcd9b6;
+
+  --focus: #2f6fed;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+
+  --font-sans:
+    'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic UI', Meiryo,
+    system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111418;
+    --fg: #e8eaed;
+    --muted: #9aa3ad;
+    --border: #2a2f36;
+    --surface: #181c22;
+    --surface-2: #1f242b;
+    --c-warn: #f4b36b;
+    --c-warn-bg: #2b2014;
+    --c-warn-border: #5a4020;
+    --shadow: none;
+  }
+}
